@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rain Matrix App</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #020617;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: #f8fafc;
+}
+.hidden {
+    display: none;
+}
+h1 {
+    color: #e2e8f0;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 14px;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background: rgba(2, 6, 23, 0.7);
+    color: #f8fafc;
+}
+input:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #0284c7;
+}
+</style>
+</head>
+<body>
+
+<canvas id="rainCanvas"></canvas>
+
+<div class="container">
+    <div id="reg-box" class="card">
+        <form id="reg-form">
+            <h1>Registration</h1>
+            <div class="form-group">
+                <label for="r-name">Name</label>
+                <input type="text" id="r-name" required>
+            </div>
+            <div class="form-group">
+                <label for="r-email">Email</label>
+                <input type="email" id="r-email" required>
+            </div>
+            <div class="form-group">
+                <label for="r-pass">Password</label>
+                <input type="password" id="r-pass" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="log-box" class="card hidden">
+        <form id="log-form">
+            <h1>Login</h1>
+            <div class="form-group">
+                <label for="l-email">Email</label>
+                <input type="email" id="l-email" required>
+            </div>
+            <div class="form-group">
+                <label for="l-pass">Password</label>
+                <input type="password" id="l-pass" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="welcome-box" class="card hidden">
+        <h1 id="welcome-msg">Welcome</h1>
+        <p>You have successfully logged in!</p>
+    </div>
+</div>
+
+<script>
+let storedEmail = '';
+let storedPass = '';
+let storedName = '';
+
+const regForm = document.getElementById('reg-form');
+const logForm = document.getElementById('log-form');
+const regBox = document.getElementById('reg-box');
+const logBox = document.getElementById('log-box');
+const welcomeBox = document.getElementById('welcome-box');
+const welcomeMsg = document.getElementById('welcome-msg');
+
+regForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    storedName = document.getElementById('r-name').value;
+    storedEmail = document.getElementById('r-email').value;
+    storedPass = document.getElementById('r-pass').value;
+    regBox.classList.add('hidden');
+    logBox.classList.remove('hidden');
+});
+
+logForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const lEmail = document.getElementById('l-email').value;
+    const lPass = document.getElementById('l-pass').value;
+    if (lEmail === storedEmail && lPass === storedPass) {
+        logBox.classList.add('hidden');
+        welcomeBox.classList.remove('hidden');
+        welcomeMsg.textContent = "Welcome, " + storedName + "!";
+    } else {
+        alert("Invalid Email or Password. Please match your registration details.");
+    }
+});
+
+const canvas = document.getElementById('rainCanvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+let dropMatrix = [];
+
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    generateMatrix();
+}
+
+function generateMatrix() {
+    dropMatrix = [];
+    const columns = Math.floor(w / 15);
+    for (let i = 0; i < columns; i++) {
+        let colDrops = [];
+        let dropCount = Math.floor(Math.random() * 3) + 1;
+        for (let j = 0; j < dropCount; j++) {
+            colDrops.push([
+                i * 15 + (Math.random() * 10 - 5), 
+                Math.random() * h,                 
+                Math.random() * 5 + 4,             
+                Math.random() * 20 + 10,           
+                Math.random() * 0.4 + 0.2          
+            ]);
+        }
+        dropMatrix.push(colDrops);
+    }
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+function animateRain() {
+    ctx.fillStyle = 'rgba(2, 6, 23, 0.25)';
+    ctx.fillRect(0, 0, w, h);
+
+    for (let i = 0; i < dropMatrix.length; i++) {
+        for (let j = 0; j < dropMatrix[i].length; j++) {
+            let drop = dropMatrix[i][j];
+            
+            ctx.beginPath();
+            ctx.moveTo(drop[0], drop[1]);
+            ctx.lineTo(drop[0], drop[1] + drop[3]);
+            ctx.strokeStyle = `rgba(186, 230, 253, ${drop[4]})`;
+            ctx.lineWidth = 1.5;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+            
+            drop[1] += drop[2];
+
+            if (drop[1] > h) {
+                if (Math.random() > 0.4) {
+                    drop[1] = -drop[3];
+                    drop[0] = i * 15 + (Math.random() * 10 - 5);
+                }
+            }
+        }
+    }
+    requestAnimationFrame(animateRain);
+}
+animateRain();
+</script>
+</body>
+</html>
