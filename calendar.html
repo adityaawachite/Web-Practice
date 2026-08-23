@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नोव्हेंबर 2026 कॅलेंडर</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calendar-frame {
+            background-color: white;
+            width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            overflow: visible; 
+        }
+
+        .calendar-header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 28px;
+            font-weight: bold;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .weekdays-row {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: #34495e;
+            color: #ecf0f1;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .weekdays-row div {
+            padding: 12px 0;
+            border-right: 1px solid #2c3e50;
+        }
+
+        .weekdays-row div:last-child {
+            border-right: none;
+        }
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .date-box {
+            background-color: #ecf0f1;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #bdc3c7;
+        }
+
+        .short-date {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .full-info {
+            display: none; 
+            font-size: 14px;
+            color: white;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .date-box:hover {
+            transform: scale(1.4); 
+            z-index: 10; 
+            background-color: #e74c3c; 
+            border: none;
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .date-box:hover .short-date {
+            display: none; 
+        }
+
+        .date-box:hover .full-info {
+            display: block; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calendar-frame">
+        
+        <div class="calendar-header">
+            नोव्हेंबर २०२६ (Nov 2026)
+        </div>
+
+        <div class="weekdays-row">
+            <div>रवि</div>
+            <div>सोम</div>
+            <div>मंगळ</div>
+            <div>बुध</div>
+            <div>गुरु</div>
+            <div>शुक्र</div>
+            <div>शनि</div>
+        </div>
+
+        <div class="dates-grid">
+            <div class="date-box">
+                <span class="short-date">1</span>
+                <span class="full-info">रविवार<br>1 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">2</span>
+                <span class="full-info">सोमवार<br>2 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">3</span>
+                <span class="full-info">मंगळवार<br>3 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">4</span>
+                <span class="full-info">बुधवार<br>4 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">5</span>
+                <span class="full-info">गुरुवार<br>5 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">6</span>
+                <span class="full-info">शुक्रवार<br>6 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">7</span>
+                <span class="full-info">शनिवार<br>7 नोव्हेंबर 2026</span>
+            </div>
+
+            <div class="date-box">
+                <span class="short-date">8</span>
+                <span class="full-info">रविवार<br>8 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">9</span>
+                <span class="full-info">सोमवार<br>9 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">10</span>
+                <span class="full-info">मंगळवार<br>10 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">11</span>
+                <span class="full-info">बुधवार<br>11 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">12</span>
+                <span class="full-info">गुरुवार<br>12 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">13</span>
+                <span class="full-info">शुक्रवार<br>13 नोव्हेंबर 2026</span>
+            </div>
+            <div class="date-box">
+                <span class="short-date">14</span>
+                <span class="full-info">शनिवार<br>14 नोव्हेंबर 2026</span>
+            </div>
+
+            <div class="date-box"><span class="short-date">15</span><span class="full-info">रविवार<br>15 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">16</span><span class="full-info">सोमवार<br>16 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">17</span><span class="full-info">मंगळवार<br>17 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">18</span><span class="full-info">बुधवार<br>18 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">19</span><span class="full-info">गुरुवार<br>19 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">20</span><span class="full-info">शुक्रवार<br>20 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">21</span><span class="full-info">शनिवार<br>21 नोव्हेंबर 2026</span></div>
+
+            <div class="date-box"><span class="short-date">22</span><span class="full-info">रविवार<br>22 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">23</span><span class="full-info">सोमवार<br>23 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">24</span><span class="full-info">मंगळवार<br>24 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">25</span><span class="full-info">बुधवार<br>25 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">26</span><span class="full-info">गुरुवार<br>26 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">27</span><span class="full-info">शुक्रवार<br>27 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">28</span><span class="full-info">शनिवार<br>28 नोव्हेंबर 2026</span></div>
+
+            <div class="date-box"><span class="short-date">29</span><span class="full-info">रविवार<br>29 नोव्हेंबर 2026</span></div>
+            <div class="date-box"><span class="short-date">30</span><span class="full-info">सोमवार<br>30 नोव्हेंबर 2026</span></div>
+        </div>
+    </div>
+
+</body>
+</html>
