@@ -1,0 +1,18 @@
+
+<html>
+<body>
+  <h2>To-Do List</h2>
+  
+  <input id="task">
+  <button onclick="add()">Add</button>
+  
+  <ul id="list"></ul>
+
+  <script>
+    function add() {
+      let t = document.getElementById("task").value;
+      document.getElementById("list").innerHTML += "<li>" + t + "</li>";
+    }
+  </script>
+</body>
+</html>
